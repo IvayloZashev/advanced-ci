@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Advanced CI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<header>
+    <nav class="site-nav navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Ivaylo Zashev's site</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Java</a></li>
+                <li><a href="#">Java script</a></li>
+                <li><a href="#">Agile</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <ul>
+                <li><a href="create-job">Create job</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="build-history">Build History</a></li>
+                <li><a href="#">Users</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <p th:text="'Welcome to the home page ' + ${name} "></p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th style="width: 100px;">Name</th>
+                    <th style="width: 40px;">Last build</th>
+                    <th style="width: 40px;">Run the job</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="jobi : ${jobs}">
+                        <td><a th:href="@{'/job/' + ${jobi.id}}" th:text="${jobi.name}"></a></td>
+                        <td th:text="${#dates.format(jobi.lastBuild, 'dd-MM-yyyy HH:mm')}"></td>
+                        <input type="hidden" name="name" th:value="${jobi.name}"/>
+                        <input type="hidden" name="id" th:value="${jobi.id}"/>
+                        <input type="hidden" name="githubUrl" th:value="${jobi.githubUrl}"/>
+                        <input type="hidden" name="projectRootDirectory" th:value="${jobi.projectRootDirectory}"/>
+                        <input type="hidden" name="buildCommand" th:value="${jobi.buildCommand}"/>
+                        <td><a th:href="@{'/get-run-job/' + ${jobi.id}}" th:text="${jobi.name}" class="button"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer>
+    This is the footer
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Advanced CI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+
+<body>
+<header>
+    <nav class="site-nav navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Ivaylo Zashev's site</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Java</a></li>
+                <li><a href="#">Java script</a></li>
+                <li><a href="#">Agile</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <input type="hidden" id="job-id" name="job-id" th:value="${job.id}"/>
+    <input type="hidden" id="job-name" name="job-name" th:value="${job.name}"/>
+
+    <div class="row">
+        <h2 th:text="'The result of the execution of job ' + ${job.name} "></h2>
+        <div class="col-lg-9">
+            <div class="col-lg-6" id="result">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="col-lg-6" id="summary">
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    This is the footer
+</footer>
+<script src="/lib/jquery-3.2.1.min.js"></script>
+<script src="/lib/download.js"></script>
+<script src="/js/run-job.js"></script>
+</body>
+</html>
